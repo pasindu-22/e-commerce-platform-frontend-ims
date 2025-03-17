@@ -19,7 +19,7 @@ export default function StockPage() {
       setStocks([
         { productSku: 'SKU-001', quantity: 50, lowStockThreshold: 10, warehouse: 'Main Warehouse' },
         { productSku: 'SKU-002', quantity: 8, lowStockThreshold: 15, warehouse: 'Main Warehouse' },
-        { productSku: 'SKU-003', quantity: 120, lowStockThreshold: 20, warehouse: 'Storage Facility B' },
+        { productSku: 'SKU-003', quantity: 120, lowStockThreshold: 30, warehouse: 'Storage Facility B' },
       ]);
     }
   }, [role, router]);
