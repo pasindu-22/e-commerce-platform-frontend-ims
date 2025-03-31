@@ -5,8 +5,11 @@ import { useRouter } from 'next/navigation';
 import { useState, useEffect } from 'react';
 import Link from 'next/link';
 import { ProfileProvider } from '../../context/ProfileContext';
+import { PasswordProvider } from '@/app/context/PasswordContext';
 import PersonalInfoTab from './components/PersonalInfoTab';
 import ProfileSidebar from './components/ProfileSidebar';
+import PasswordTab from './components/PasswordTab';
+
 import {
   AppBar,
   Toolbar,
@@ -85,6 +88,7 @@ export default function ProfileManagementPage() {
 
   return (
     <ProfileProvider>
+      <PasswordProvider>
       <Box sx={{ minHeight: '100vh', bgcolor: 'background.default' }}>
         <AppBar position="static" sx={{ bgcolor: '#1976d2' }}>
           <Toolbar>
@@ -153,7 +157,10 @@ export default function ProfileManagementPage() {
                 
                 {/* Other tabs - you'll implement these with their respective contexts */}
                 {activeTab === 1 && (
-                  <div>Password Tab Component will go here</div>
+                  <PasswordTab 
+                    showNotification={showNotification} 
+                    setLoading={setLoading} 
+                  />
                 )}
                 
                 {activeTab === 2 && (
@@ -180,6 +187,7 @@ export default function ProfileManagementPage() {
           </Snackbar>
         </Container>
       </Box>
+      </PasswordProvider>
     </ProfileProvider>
   );
 }
