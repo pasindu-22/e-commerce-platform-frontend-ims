@@ -1,6 +1,7 @@
 'use client';
 
 import { useProfile } from '../../../context/ProfileContext';
+import { useSecurity } from '../../../context/SecurityContext';
 import {
   Typography,
   Avatar,
@@ -19,8 +20,9 @@ import NotificationsIcon from '@mui/icons-material/Notifications';
 import LockIcon from '@mui/icons-material/Lock';
 import PhotoCameraIcon from '@mui/icons-material/PhotoCamera';
 
-export default function ProfileSidebar({ securitySettings }) {
+export default function ProfileSidebar() {
   const { personalInfo } = useProfile();
+  const { securitySettings} = useSecurity();
 
   return (
     <Card elevation={2}>
