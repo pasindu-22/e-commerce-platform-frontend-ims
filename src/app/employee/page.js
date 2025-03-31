@@ -5,6 +5,16 @@ import { useRole } from '../context/RoleContext';
 import { useRouter } from 'next/navigation';
 import { useEffect } from 'react';
 import Link from 'next/link';
+import {
+  AppBar,
+  Toolbar,
+  Typography,
+  Button,
+  Container,
+  Box,
+  Paper,
+  Stack
+} from '@mui/material';
 
 export default function EmployeePage() {
   const { role, clearRole } = useRole();
@@ -17,30 +27,66 @@ export default function EmployeePage() {
   }, [role, router]);
 
   return (
-    <div className="min-h-screen bg-gray-50">
-      <nav className="bg-blue-600 p-4 text-white">
-        <div className="container mx-auto flex justify-between items-center">
-          <h1 className="font-bold text-xl">IMS - Employee Portal</h1>
-          <button onClick={clearRole} className="bg-blue-700 px-3 py-1 rounded hover:bg-blue-800">
+    <Box sx={{ minHeight: '100vh', bgcolor: 'background.default' }}>
+      <AppBar position="static" sx={{ bgcolor: '#64b5f6' }}>
+        <Toolbar>
+          <Typography variant="h6" component="div" sx={{ flexGrow: 1, fontWeight: 'bold' }}>
+            IMS - Employee Portal
+          </Typography>
+          <Button 
+            color="inherit" 
+            onClick={clearRole}
+            sx={{ 
+              bgcolor: '#1976d2', 
+              '&:hover': { 
+                bgcolor: '#1565c0' 
+              }
+            }}
+          >
             Change Role
-          </button>
-        </div>
-      </nav>
+          </Button>
+        </Toolbar>
+      </AppBar>
       
-      <main className="container mx-auto py-8 px-4">
-        <h1 className="text-2xl font-bold mb-6">Employee Dashboard</h1>
+      <Container sx={{ py: 4 }}>
+        <Typography 
+          variant="h4" 
+          component="h1" 
+          sx={{ 
+            mb: 3, 
+            fontWeight: 'bold',
+            color: '#64b5f6'
+          }}
+        >
+          Employee Dashboard
+        </Typography>
         
-        <div className="bg-white rounded-lg shadow-md p-6 mb-6">
-          <h2 className="text-xl font-semibold mb-4">Stock Management</h2>
-          <p className="mb-4">Manage inventory stock levels and view product information</p>
+        <Paper 
+          elevation={3} 
+          sx={{ 
+            p: 3, 
+            mb: 3
+          }}
+        >
+          <Typography variant="h5" component="h2" gutterBottom sx={{ fontWeight: 'medium' }}>
+            Stock Management
+          </Typography>
+          <Typography variant="body1" paragraph>
+            Manage inventory stock levels and view product information
+          </Typography>
           
-          <div className="mt-4">
-            <Link href="/employee/stock" className="bg-blue-600 text-white px-4 py-2 rounded hover:bg-blue-700">
+          <Stack direction="row" spacing={2} sx={{ mt: 2 }}>
+            <Button
+              component={Link}
+              href="/employee/stock"
+              variant="contained"
+              color="primary"
+            >
               View Stock Items
-            </Link>
-          </div>
-        </div>
-      </main>
-    </div>
+            </Button>
+          </Stack>
+        </Paper>
+      </Container>
+    </Box>
   );
 }

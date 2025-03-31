@@ -5,6 +5,22 @@ import { useRole } from '../../context/RoleContext';
 import { useRouter } from 'next/navigation';
 import { useEffect, useState } from 'react';
 import Link from 'next/link';
+import {
+  AppBar,
+  Toolbar,
+  Typography,
+  Button,
+  Container,
+  Box,
+  Paper,
+  Table,
+  TableBody,
+  TableCell,
+  TableContainer,
+  TableHead,
+  TableRow,
+  Chip
+} from '@mui/material';
 
 export default function StockPage() {
   const { role } = useRole();
@@ -16,61 +32,108 @@ export default function StockPage() {
       router.push('/');
     } else {
       // Mock data - replace with API call when backend is ready
-      setStocks([
-        { productSku: 'SKU-001', quantity: 50, lowStockThreshold: 10, warehouse: 'Main Warehouse' },
-        { productSku: 'SKU-002', quantity: 8, lowStockThreshold: 15, warehouse: 'Main Warehouse' },
-        { productSku: 'SKU-003', quantity: 120, lowStockThreshold: 30, warehouse: 'Storage Facility B' },
-      ]);
+      fetch('http://localhost:8081/api/stock/get/all')
+        .then((response) => {
+          if (!response.ok) {
+            throw new Error('Failed to fetch stocks');
+          }
+          return response.json();
+        })
+        .then((data) => setStocks(data))
+        .catch((error) => console.error('Error fetching stocks:', error));
+      
+      
     }
   }, [role, router]);
 
   return (
-    <div className="min-h-screen bg-gray-50">
-      <nav className="bg-blue-600 p-4 text-white">
-        <div className="container mx-auto flex justify-between items-center">
-          <h1 className="font-bold text-xl">IMS - Stock Management</h1>
-          <Link href="/employee" className="bg-blue-700 px-3 py-1 rounded hover:bg-blue-800">
+    <Box sx={{ minHeight: '100vh', bgcolor: '#bbdefb' }}>
+      <AppBar position="static" sx={{ bgcolor: '#1976d2' }}>
+        <Toolbar>
+          <Typography variant="h6" component="div" sx={{ flexGrow: 1, fontWeight: 'bold' }}>
+            IMS - Stock Management
+          </Typography>
+          <Button 
+            component={Link} 
+            href="/employee" 
+            color="inherit"
+            sx={{ 
+              bgcolor: '#1565c0', 
+              '&:hover': { 
+                bgcolor: '#0d47a1' 
+              }
+            }}
+          >
             Dashboard
-          </Link>
-        </div>
-      </nav>
+          </Button>
+        </Toolbar>
+      </AppBar>
       
-      <main className="container mx-auto py-8 px-4">
-        <h1 className="text-2xl font-bold mb-6">Stock Inventory</h1>
+      <Container sx={{ py: 4 }}>
+        <Typography 
+          variant="h4" 
+          component="h1" 
+          sx={{ 
+            mb: 3, 
+            fontWeight: 'bold'
+          }}
+        >
+          Stock Inventory
+        </Typography>
         
-        <div className="bg-white rounded-lg shadow-md overflow-hidden">
-          <table className="min-w-full divide-y divide-gray-200">
-            <thead className="bg-gray-50">
-              <tr>
-                <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Product SKU</th>
-                <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Quantity</th>
-                <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Warehouse</th>
-                <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Status</th>
-              </tr>
-            </thead>
-            <tbody className="bg-white divide-y divide-gray-200">
+        <TableContainer component={Paper} sx={{ boxShadow: 3 }}>
+          <Table>
+            <TableHead sx={{ bgcolor: '#f5f5f5' }}>
+              <TableRow>
+                <TableCell>
+                  <Typography variant="subtitle2" sx={{ fontWeight: 'bold', textTransform: 'uppercase' }}>
+                    Product SKU
+                  </Typography>
+                </TableCell>
+                <TableCell>
+                  <Typography variant="subtitle2" sx={{ fontWeight: 'bold', textTransform: 'uppercase' }}>
+                    Quantity
+                  </Typography>
+                </TableCell>
+                <TableCell>
+                  <Typography variant="subtitle2" sx={{ fontWeight: 'bold', textTransform: 'uppercase' }}>
+                    Warehouse
+                  </Typography>
+                </TableCell>
+                <TableCell>
+                  <Typography variant="subtitle2" sx={{ fontWeight: 'bold', textTransform: 'uppercase' }}>
+                    Status
+                  </Typography>
+                </TableCell>
+              </TableRow>
+            </TableHead>
+            <TableBody>
               {stocks.map((stock) => (
-                <tr key={stock.productSku}>
-                  <td className="px-6 py-4 whitespace-nowrap">{stock.productSku}</td>
-                  <td className="px-6 py-4 whitespace-nowrap">{stock.quantity}</td>
-                  <td className="px-6 py-4 whitespace-nowrap">{stock.warehouse}</td>
-                  <td className="px-6 py-4 whitespace-nowrap">
+                <TableRow key={stock.productSku} hover>
+                  <TableCell>{stock.productSku}</TableCell>
+                  <TableCell>{stock.quantity}</TableCell>
+                  <TableCell>{stock.warehouseCode}</TableCell>
+                  <TableCell>
                     {stock.quantity <= stock.lowStockThreshold ? (
-                      <span className="px-2 inline-flex text-xs leading-5 font-semibold rounded-full bg-red-100 text-red-800">
-                        Low Stock
-                      </span>
+                      <Chip 
+                        label="Low Stock" 
+                        color="error" 
+                        size="small" 
+                      />
                     ) : (
-                      <span className="px-2 inline-flex text-xs leading-5 font-semibold rounded-full bg-green-100 text-green-800">
-                        In Stock
-                      </span>
+                      <Chip 
+                        label="In Stock" 
+                        color="success" 
+                        size="small" 
+                      />
                     )}
-                  </td>
-                </tr>
+                  </TableCell>
+                </TableRow>
               ))}
-            </tbody>
-          </table>
-        </div>
-      </main>
-    </div>
+            </TableBody>
+          </Table>
+        </TableContainer>
+      </Container>
+    </Box>
   );
 }
