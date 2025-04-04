@@ -141,7 +141,7 @@ export default function WarehousesManagementPage() {
         { 
           id: '1', 
           warehouseCode: 'WH001', 
-          location: 'New York, NY', 
+          location: 'Colomobo, Moratuwa', 
           capacity: 5000, 
           isActive: true,
           description: 'Main distribution center for East Coast operations'
@@ -149,7 +149,7 @@ export default function WarehousesManagementPage() {
         { 
           id: '2', 
           warehouseCode: 'WH002', 
-          location: 'Los Angeles, CA', 
+          location: 'Galle City', 
           capacity: 7500, 
           isActive: true,
           description: 'Primary warehouse for West Coast distribution'
@@ -157,7 +157,7 @@ export default function WarehousesManagementPage() {
         { 
           id: '3', 
           warehouseCode: 'WH003', 
-          location: 'Chicago, IL', 
+          location: 'Matara City', 
           capacity: 4000, 
           isActive: false,
           description: 'Central region storage facility (currently undergoing renovations)'
@@ -165,7 +165,7 @@ export default function WarehousesManagementPage() {
         { 
           id: '4', 
           warehouseCode: 'WH004', 
-          location: 'Houston, TX', 
+          location: 'Kandy City', 
           capacity: 6000, 
           isActive: true,
           description: 'Southern distribution hub with refrigerated storage'
@@ -173,7 +173,7 @@ export default function WarehousesManagementPage() {
         { 
           id: '5', 
           warehouseCode: 'WH005', 
-          location: 'Phoenix, AZ', 
+          location: 'Jaffna City', 
           capacity: 3000, 
           isActive: true,
           description: 'Southwest regional fulfillment center'

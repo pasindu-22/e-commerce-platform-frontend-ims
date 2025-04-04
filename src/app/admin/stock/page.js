@@ -189,67 +189,67 @@ export default function StockManagementPage() {
         { 
           id: '1', 
           sku: 'SKU001', 
-          name: 'Premium Widget', 
-          description: 'High-quality widget for industrial use', 
-          category: 'Widgets',
+          name: 'Tikiri Mari', 
+          description: 'Milk flavor', 
+          category: 'Biscuits',
           quantity: 15,
           minQuantity: 20,
           maxQuantity: 100,
           warehouseId: '1',
-          expiryDate: '2023-12-31',
-          lastUpdated: '2023-06-15'
+          expiryDate: '2025-12-31',
+          lastUpdated: '2025-03-15'
         },
         { 
           id: '2', 
           sku: 'SKU002', 
-          name: 'Standard Gizmo', 
-          description: 'Standard issue gizmo for general use', 
-          category: 'Gizmos',
+          name: 'Samba rice', 
+          description: 'Long grain rice', 
+          category: 'Grains',
           quantity: 120,
           minQuantity: 50,
           maxQuantity: 100,
           warehouseId: '2',
-          expiryDate: '2024-06-30',
-          lastUpdated: '2023-06-10'
+          expiryDate: '2025-06-30',
+          lastUpdated: '2025-03-10'
         },
         { 
           id: '3', 
           sku: 'SKU003', 
-          name: 'Deluxe Thingamajig', 
-          description: 'Premium thingamajig with all features', 
-          category: 'Thingamajigs',
+          name: 'Chicken', 
+          description: 'Fresh chicken', 
+          category: 'Meat',
           quantity: 5,
           minQuantity: 10,
           maxQuantity: 50,
           warehouseId: '1',
-          expiryDate: '2023-09-15',
-          lastUpdated: '2023-06-12'
+          expiryDate: '2025-09-15',
+          lastUpdated: '2025-03-12'
         },
         { 
           id: '4', 
           sku: 'SKU004', 
-          name: 'Basic Doohickey', 
-          description: 'Essential doohickey for basic operations', 
-          category: 'Doohickeys',
+          name: 'Soap', 
+          description: 'Cleansing soap', 
+          category: 'Household',
           quantity: 0,
           minQuantity: 5,
           maxQuantity: 25,
           warehouseId: '3',
-          expiryDate: '2025-01-01',
+          expiryDate: '2025-05-01',
           lastUpdated: '2023-06-01'
         },
         { 
           id: '5', 
           sku: 'SKU005', 
-          name: 'Advanced Whatchamacallit', 
-          description: 'Cutting-edge whatchamacallit for professionals', 
-          category: 'Whatchamacallits',
+          name: 'Banana', 
+          description: 'Fresh bananas', 
+          category: 'Fruits',
           quantity: 75,
           minQuantity: 20,
           maxQuantity: 80,
           warehouseId: '2',
-          expiryDate: '2023-08-20',
-          lastUpdated: '2023-06-14'
+          expiryDate: '2025-02-20',
+          lastUpdated: '2025-03-14'
         }
       ];
       
@@ -270,11 +270,11 @@ export default function StockManagementPage() {
     try {
       // Mock data - in production, replace with API call
       const mockWarehouses = [
-        { id: '1', warehouseCode: 'WH001', location: 'New York, NY' },
-        { id: '2', warehouseCode: 'WH002', location: 'Los Angeles, CA' },
-        { id: '3', warehouseCode: 'WH003', location: 'Chicago, IL' },
-        { id: '4', warehouseCode: 'WH004', location: 'Houston, TX' },
-        { id: '5', warehouseCode: 'WH005', location: 'Phoenix, AZ' }
+        { id: '1', warehouseCode: 'WH001', location: 'Colombo-01' },
+        { id: '2', warehouseCode: 'WH002', location: 'Galle' },
+        { id: '3', warehouseCode: 'WH003', location: 'Matara' },
+        { id: '4', warehouseCode: 'WH004', location: 'Jaffna' },
+        { id: '5', warehouseCode: 'WH005', location: 'Kandy' }
       ];
       
       setWarehouses(mockWarehouses);

@@ -5,8 +5,13 @@ import { useRouter } from 'next/navigation';
 import { useState, useEffect } from 'react';
 import Link from 'next/link';
 import { ProfileProvider } from '../../context/ProfileContext';
+import { PasswordProvider } from '@/app/context/PasswordContext';
+import { SecurityProvider } from '@/app/context/SecurityContext';
 import PersonalInfoTab from './components/PersonalInfoTab';
 import ProfileSidebar from './components/ProfileSidebar';
+import PasswordTab from './components/PasswordTab';
+import SecurityTab from './components/SecurityTab';
+
 import {
   AppBar,
   Toolbar,
@@ -22,14 +27,14 @@ import {
   Snackbar,
   Alert,
   CircularProgress,
-  // other imports you need
+  
 } from '@mui/material';
 
-// Icons
+
 import PersonIcon from '@mui/icons-material/Person';
 import LockIcon from '@mui/icons-material/Lock';
 import SecurityIcon from '@mui/icons-material/Security';
-// other icons
+
 
 export default function ProfileManagementPage() {
   const { role } = useRole();
@@ -37,15 +42,6 @@ export default function ProfileManagementPage() {
   
   // Tab state
   const [activeTab, setActiveTab] = useState(0);
-  
-  // Security settings states (will move to SecurityContext later)
-  const [securitySettings, setSecuritySettings] = useState({
-    twoFactorEnabled: false,
-    emailNotifications: true,
-    loginAlerts: true,
-    autoLogout: 30, // minutes
-    lastPasswordChange: '2025-02-15'
-  });
   
   // Notification state
   const [notification, setNotification] = useState({ open: false, message: '', severity: 'success' });
@@ -85,6 +81,8 @@ export default function ProfileManagementPage() {
 
   return (
     <ProfileProvider>
+      <PasswordProvider>
+      <SecurityProvider>
       <Box sx={{ minHeight: '100vh', bgcolor: 'background.default' }}>
         <AppBar position="static" sx={{ bgcolor: '#1976d2' }}>
           <Toolbar>
@@ -124,7 +122,7 @@ export default function ProfileManagementPage() {
             <Grid container spacing={4}>
               {/* Profile Summary */}
               <Grid item xs={12} md={4}>
-                <ProfileSidebar securitySettings={securitySettings} />
+                <ProfileSidebar />
               </Grid>
               
               {/* Tabs Section */}
@@ -153,11 +151,18 @@ export default function ProfileManagementPage() {
                 
                 {/* Other tabs - you'll implement these with their respective contexts */}
                 {activeTab === 1 && (
-                  <div>Password Tab Component will go here</div>
+                  <PasswordTab 
+                    showNotification={showNotification} 
+                    setLoading={setLoading} 
+                  />
                 )}
                 
                 {activeTab === 2 && (
-                  <div>Security Settings Tab Component will go here</div>
+                  // <SecurityTab 
+                  //   showNotification={showNotification} 
+                  //   setLoading={setLoading} 
+                  // />
+                  <div>Security Tab</div>
                 )}
               </Grid>
             </Grid>
@@ -180,6 +185,8 @@ export default function ProfileManagementPage() {
           </Snackbar>
         </Container>
       </Box>
+      </SecurityProvider>
+      </PasswordProvider>
     </ProfileProvider>
   );
 }

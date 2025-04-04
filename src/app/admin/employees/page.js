@@ -128,11 +128,11 @@ export default function EmployeesPage() {
     try {
       // Mocked data for demo purposes
       const mockEmployees = [
-        { id: 1, username: 'john_doe', firstName: 'John', lastName: 'Doe', email: 'john@example.com', role: 'employee', status: 'active', warehouse: { id: 1, name: 'Main Warehouse' } },
-        { id: 2, username: 'jane_smith', firstName: 'Jane', lastName: 'Smith', email: 'jane@example.com', role: 'manager', status: 'active', warehouse: { id: 2, name: 'East Facility' } },
-        { id: 3, username: 'bob_admin', firstName: 'Bob', lastName: 'Admin', email: 'bob@example.com', role: 'admin', status: 'active', warehouse: null },
+        { id: 1, username: 'pasindu_s', firstName: 'Pasindu', lastName: 'Sathsara', email: 'pasindu@outlook.com', role: 'manager', status: 'active', warehouse: { id: 1, name: 'Colomobo-01' } },
+        { id: 2, username: 'dumindu_m', firstName: 'Dumindu', lastName: 'Madhuwanthe', email: 'dumindu@outlook.com', role: 'employee', status: 'active', warehouse: { id: 2, name: 'Galle' } },
+        { id: 3, username: 'ravindu_a', firstName: 'Ravindu', lastName: 'Akalanka', email: 'ravindu@outlook.com', role: 'admin', status: 'active', warehouse: { id: 2, name: 'Galle' } },
         { id: 4, username: 'alice_worker', firstName: 'Alice', lastName: 'Worker', email: 'alice@example.com', role: 'employee', status: 'inactive', warehouse: { id: 1, name: 'Main Warehouse' } },
-        { id: 5, username: 'alex_supervisor', firstName: 'Alex', lastName: 'Supervisor', email: 'alex@example.com', role: 'manager', status: 'active', warehouse: { id: 3, name: 'West Facility' } },
+        { id: 5, username: 'gamaith_c', firstName: 'Gamith', lastName: 'Chanuka', email: 'gamith@outlook.com', role: 'manager', status: 'active', warehouse: { id: 3, name: 'Matara' } },
       ];
       
       // Simulating API delay
@@ -160,10 +160,10 @@ export default function EmployeesPage() {
     try {
       // Mocked data for demo purposes
       const mockWarehouses = [
-        { id: 1, name: 'Main Warehouse', location: 'New York' },
-        { id: 2, name: 'East Facility', location: 'Boston' },
-        { id: 3, name: 'West Facility', location: 'San Francisco' },
-        { id: 4, name: 'South Storage', location: 'Miami' },
+        { id: 1, name: 'Colombo-01', location: 'Moratuwa' },
+        { id: 2, name: 'Galle', location: 'Magalle' },
+        { id: 3, name: 'Matara', location: 'City' },
+        { id: 4, name: 'Kandy', location: 'City' },
       ];
       
       setWarehouses(mockWarehouses);
